@@ -18,7 +18,6 @@ class _HomePageState extends State<HomePage> {
   int totalIncome = 0;
   int totalExpense = 0;
   List<FlSpot> dataSet = [];
-
   List<FlSpot> getPlotPoints(Map entireData) {
     dataSet = [];
     entireData.forEach((key, value) {
@@ -44,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         totalBalance += (value['amount'] as int);
         totalIncome += (value['amount'] as int);
       } else {
-        totalBalance += (value['amount'] as int);
+        totalBalance -= (value['amount'] as int);
         totalExpense += (value['amount'] as int);
       }
     });
@@ -257,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                 spots: getPlotPoints(snapshot.data!),
                                 isCurved: false,
                                 barWidth: 2.5,
-                                colors: [Static.PrimaryColor],
+                                color: Static.PrimaryColor,
                               ),
                             ],
                           ),
@@ -279,7 +278,8 @@ class _HomePageState extends State<HomePage> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
-                    Map dataAtIndex = snapshot.data![index];
+                    Map dataAtIndex =
+                        snapshot.data!.values.elementAt(index) as Map;
                     if (dataAtIndex['type'] == 'Income') {
                       return incomeTile(
                           dataAtIndex['amount'], dataAtIndex['note']);

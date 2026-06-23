@@ -121,33 +121,29 @@ class _AddTransactionState extends State<AddTransaction> {
               Container(
                 decoration: BoxDecoration(
                   color: Static.PrimaryColor,
-                  borderRadius: BorderRadius.circular(
-                    16.0,
-                  ),
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-                padding: EdgeInsets.all(
-                  12.0,
+                padding: const EdgeInsets.all(12.0),
+                child: const Icon(
+                  Icons.description,
+                  size: 24.0,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(width: 12.0),
+              Expanded(
+                child: TextField(
+                  decoration: const InputDecoration(
+                    hintText: "Note on Transaction",
+                    border: InputBorder.none,
+                  ),
+                  style: const TextStyle(fontSize: 24.0),
+                  onChanged: (val) {
+                    note = val;
+                  },
                 ),
               ),
             ],
-            child: Icon(Icons.description, size: 24.0, color: Colors.white),
-          ),
-          SizedBox(
-            width: 12.0,
-          ),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Note on Transaction",
-                border: InputBorder.none,
-              ),
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
-              onChanged: (val) {
-                note = val;
-              },
-            ),
           ),
           SizedBox(
             height: 20.0,
